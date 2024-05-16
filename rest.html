@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Manipulation App</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #ffe4e1; /* Pale pink background */
+        }
+        #number {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="number">0</div>
+    <div class="button-container">
+        <button onclick="changeNumber(1)">Add 1</button>
+        <button onclick="changeNumber(5)">Add 5</button>
+        <button onclick="changeNumber(-1)">Subtract 1</button>
+        <button onclick="changeNumber(-5)">Subtract 5</button>
+    </div>
+
+    <script>
+        let currentNumber = localStorage.getItem('currentNumber') ? parseInt(localStorage.getItem('currentNumber')) : 0;
+        const numberDiv = document.getElementById('number');
+        numberDiv.textContent = currentNumber;
+
+        function changeNumber(value) {
+            currentNumber += value;
+            numberDiv.textContent = currentNumber;
+            localStorage.setItem('currentNumber', currentNumber);
+        }
+
+        // Register the service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+            .then(function(registration) {
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }).catch(function(error) {
+                console.log('ServiceWorker registration failed: ', error);
+            });
+        }
+    </script>
+</body>
+</html>
