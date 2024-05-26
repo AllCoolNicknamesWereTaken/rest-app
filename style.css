@@ -10,22 +10,30 @@ body {
 }
 
 #app {
-    background: white;
     border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
     padding: 30px;
     text-align: center;
+    background-color: transparent; /* Usunięcie białego tła */
 }
 
 #number {
     font-size: 72px;
     margin-bottom: 30px;
     color: #333;
+    background-color: transparent; /* Usunięcie białego tła */
 }
 
 .button-container {
     display: flex;
     flex-direction: column;
+    align-items: center; /* Centrowanie przycisków w poziomie */
+    gap: 15px;
+}
+
+.button-row {
+    display: flex;
+    justify-content: center; /* Centrowanie przycisków w poziomie */
     gap: 15px;
 }
 
